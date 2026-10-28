@@ -50,5 +50,4 @@ Previsões registradas no commit: <!-- cole o hash curto do commit de previsões
 <!-- Explique o resultado que mais surpreendeu você. -->
 
 ### R7 — Issue #4
-
-<!-- Sintoma; o teste de regressão (nome); a causa, em termos da soma acumulada; a correção; por que os testes de aceitação não pegaram o defeito; mais um caso que eles não cobrem e qual teste seu o cobre. -->
+O problema era que, quando fazíamos as médias móveis, a função retornava uma média móvel a menos. O teste usado foi o test_media_movel. A média móvel que continha o primeiro termo não era calculada porque o array das somas acumuladas não começava com um zero, mas com o primeiro valor da série. Ao colocar o zero no começo, a primeira média também passou a ser calculada. Os testes de aceitação não pegaram o defeito porque não verificavam esse caso específico. Um exemplo é uma série de 1000 leituras com janela 40, que deveria devolver 961 médias móveis, mas retornava 960, enquanto o meu teste cobre esse caso.
